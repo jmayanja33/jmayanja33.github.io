@@ -358,6 +358,7 @@ body {
     height: 40px;
     transition: transform 0.3s;
     filter: brightness(0) invert(1);
+    object-fit: contain;
 }
 
 .social-icon:hover {
