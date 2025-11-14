@@ -1,0 +1,401 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --text-color: #1f2937;
+    --light-bg: #f5f5dc;
+    --border-color: #d4c5a9;
+    --white: #ffffff;
+    --tan-bg: #d2b48c;
+    --black: #000000;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--tan-bg);
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--black);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background-color: var(--tan-bg);
+    color: var(--black);
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    flex: 1;
+}
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Home Page */
+.home-hero {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.home-photo {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.home-title {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.home-description {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+/* Bio Page */
+.bio-content {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.bio-photo {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+
+.bio-text {
+    flex: 1;
+}
+
+.bio-text h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.bio-text p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Content Section */
+.content-section {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.interest-category {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+}
+
+.interest-category h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Resume Page */
+.download-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.resume-viewer {
+    margin-top: 2rem;
+    width: 100%;
+    height: 800px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.pdf-viewer {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Extras Page */
+.extras-description {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.extras-description h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.video-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.video-item {
+    background-color: var(--light-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.video-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.video-player {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+/* Contact Page */
+.contact-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-info h2,
+.contact-message h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.contact-item {
+    margin-bottom: 1.5rem;
+}
+
+.contact-item h3 {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.contact-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+/* Repositories Page */
+.loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    padding: 3rem;
+}
+
+.repos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.repo-card {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.repo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.repo-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.repo-card p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.repo-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+.repo-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.repo-link {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.repo-link:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 2rem 0;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s;
+    filter: brightness(0) invert(1);
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .bio-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bio-photo {
+        width: 250px;
+        height: 250px;
+    }
+
+    .home-photo {
+        width: 250px;
+        height: 250px;
+    }
+
+    .home-title {
+        font-size: 2rem;
+    }
+
+    .video-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .repos-grid {
+        grid-template-columns: 1fr;
+    }
+}
