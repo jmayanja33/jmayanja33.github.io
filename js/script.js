@@ -1,6 +1,16 @@
 // Replace with your GitHub username
 const GITHUB_USERNAME = 'jmayanja33';
 
+// Manual order for featured repositories (these will appear first)
+const FEATURED_REPOS_ORDER = [
+    'quarterback-evaluation-models',
+    'automated-grading',
+    'airport-simulation',
+    'modeling-spreads',
+    'analyzing-energy-consumption',
+    'certificate-management'
+];
+
 // Fetch repositories from GitHub API
 async function fetchRepositories() {
     const loading = document.getElementById('loading');
@@ -13,7 +23,32 @@ async function fetchRepositories() {
             throw new Error('Failed to fetch repositories');
         }
 
-        const repos = await response.json();
+        const allRepos = await response.json();
+
+        // Separate featured and other repos
+        const featuredRepos = [];
+        const otherRepos = [];
+
+        // Sort repos into featured (in order) and others
+        FEATURED_REPOS_ORDER.forEach(repoName => {
+            const repo = allRepos.find(r => r.name === repoName);
+            if (repo) {
+                featuredRepos.push(repo);
+            }
+        });
+
+        // Get remaining repos sorted by updated date (newest first)
+        allRepos.forEach(repo => {
+            if (!FEATURED_REPOS_ORDER.includes(repo.name)) {
+                otherRepos.push(repo);
+            }
+        });
+
+        // Sort other repos by updated date (newest first)
+        otherRepos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
+        // Combine: featured first, then others by date
+        const repos = [...featuredRepos, ...otherRepos];
 
         // Hide loading message
         loading.style.display = 'none';
