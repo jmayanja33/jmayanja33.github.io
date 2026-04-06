@@ -3,6 +3,7 @@ const GITHUB_USERNAME = 'jmayanja33';
 
 // Manual order for featured repositories (these will appear first)
 const FEATURED_REPOS_ORDER = [
+    'march-madness-pool-analytics',
     'quarterback-evaluation-models',
     'automated-grading',
     'airport-simulation',

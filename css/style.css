@@ -84,7 +84,9 @@ body {
 }
 
 .container.resume-container {
+    width: 100%;
     max-width: 100%;
+    margin: 0;
     padding: 1rem;
 }
 
@@ -194,10 +196,11 @@ body {
 }
 
 .resume-viewer {
-    margin: 1rem auto 0;
-    width: 98%;
-    height: calc(100vh - 300px);
-    min-height: 800px;
+    position: relative;
+    width: 100%;
+    max-width: 816px;
+    margin: 0 auto;
+    padding-top: 127.13%; /* content height (778pt) / width (612pt) of this resume's PDF */
     border: 2px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
@@ -205,9 +208,13 @@ body {
 }
 
 .pdf-viewer {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: none;
+    display: block;
 }
 
 /* Extras Page */

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analyzing Energy Consumption - Josh Mayanja</title>
+    <title>Josh Mayanja - March Madness Pool Analytics</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -24,45 +24,48 @@
 
     <main class="container">
         <div class="page-header">
-            <h1>Analyzing Energy Consumption in the US</h1>
-            <a href="https://github.com/jmayanja33/analyzing-energy-consumption" target="_blank" class="download-btn">View on GitHub</a>
+            <h1>March Madness Pool Analytics</h1>
+            <a href="https://github.com/jmayanja33/march-madness-pool-analytics" target="_blank" class="download-btn">View on GitHub</a>
         </div>
 
         <div class="content-section">
             <div class="interest-category">
                 <h2>Description</h2>
                 <p>
-                    Undertaken for a Master's project at Georgia Tech, this analysis explored the dynamics of energy
-                    consumption within the United States over a period from 1973 to 2022 (Topic 2). This time period,
-                    characterized by significant changes in technology, economic conditions, and energy policies,
-                    provides a good ground for understanding how energy consumption has evolved and what factors
-                    influence it. The core motivation behind this study was to gain insights into the factors driving
-                    energy consumption and to investigate the relationship between energy consumption trends and GDP.
-                    Through this exploration, we aimed to identify key characteristics of the energy consumption time
-                    series that contribute to its predictability and to analyze how energy consumption and economic
-                    growth are linked. Finally, we focused on examining any external factors that might influence
-                    energy consumption dynamics.
+                    Rather than attempting to predict a perfect bracket (odds: 1 in 9.2 quintillion), this platform
+                    is built around pool-style March Madness gameplay. In these pools, players select 8 teams from
+                    the tournament field through an auction system, aiming to assemble the roster with the most total
+                    wins. The platform provides probability distributions showing how many games (0–6) each team is
+                    likely to win, helping players make strategic, data-driven decisions.
+                </p>
+                <p>
+                    The application combines machine learning predictions with a modern full-stack web interface,
+                    including live model evaluation that tracks predictions against actual tournament results as the
+                    tournament unfolds.
                 </p>
             </div>
 
             <div class="interest-category">
                 <h2>Key Features</h2>
                 <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                    <li>A full analysis of the Energy Consumption and GDP Relationship in the United States</li>
+                    <li>Win probability distributions (0–6 wins) for every tournament team</li>
+                    <li>Historical team comparisons using ChromaDB vector similarity search</li>
+                    <li>Power rankings and head-to-head matchup predictions</li>
+                    <li>Pool team builder for auction-style draft preparation</li>
+                    <li>Live results tracking with model evaluation metrics updated during the tournament</li>
+                    <li>CI/CD pipeline with automated testing, security scanning, and linting</li>
                 </ul>
             </div>
 
             <div class="interest-category">
                 <h2>Technologies Used</h2>
                 <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                    <li>Python</li>
-                    <li>R</li>
-                    <li>scikit-learn</li>
-                    <li>pandas</li>
-                    <li>LaTex</li>
+                    <li>Python / FastAPI</li>
+                    <li>React / Vite</li>
+                    <li>ChromaDB (vector similarity search)</li>
+                    <li>Docker / Docker Compose / Nginx</li>
                 </ul>
             </div>
-
         </div>
     </main>
 
