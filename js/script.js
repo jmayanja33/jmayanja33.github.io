@@ -1,7 +1,7 @@
-// Replace with your GitHub username
+// GitHub username used for all API requests
 const GITHUB_USERNAME = 'jmayanja33';
 
-// Manual order for featured repositories (these will appear first)
+// Ordered list of repos to pin at the top of the projects grid
 const FEATURED_REPOS_ORDER = [
     'march-madness-pool-analytics',
     'quarterback-evaluation-models',
@@ -12,12 +12,24 @@ const FEATURED_REPOS_ORDER = [
     'certificate-management'
 ];
 
-// Fetch repositories from GitHub API
+/**
+ * Fetches all public repositories for GITHUB_USERNAME from the GitHub API,
+ * separates them into featured and non-featured buckets, and triggers rendering.
+ *
+ * Featured repos are placed first in the order defined by FEATURED_REPOS_ORDER.
+ * Remaining repos are sorted by last-updated date (newest first).
+ * On failure, displays an error message in the loading element.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function fetchRepositories() {
+    // Grab DOM references needed throughout this function
     const loading = document.getElementById('loading');
     const container = document.getElementById('repos-container');
 
     try {
+        // Request up to 100 repos sorted by last-updated date
         const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
 
         if (!response.ok) {
@@ -26,11 +38,11 @@ async function fetchRepositories() {
 
         const allRepos = await response.json();
 
-        // Separate featured and other repos
+        // Buckets for featured (pinned) vs. remaining repos
         const featuredRepos = [];
         const otherRepos = [];
 
-        // Sort repos into featured (in order) and others
+        // Pull featured repos out in the declared pin order
         FEATURED_REPOS_ORDER.forEach(repoName => {
             const repo = allRepos.find(r => r.name === repoName);
             if (repo) {
@@ -38,39 +50,55 @@ async function fetchRepositories() {
             }
         });
 
-        // Get remaining repos sorted by updated date (newest first)
+        // Collect every repo not in the featured list
         allRepos.forEach(repo => {
             if (!FEATURED_REPOS_ORDER.includes(repo.name)) {
                 otherRepos.push(repo);
             }
         });
 
-        // Sort other repos by updated date (newest first)
+        // Sort non-featured repos by last-updated descending
         otherRepos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
-        // Combine: featured first, then others by date
+        // Merge: pinned repos first, then remaining by recency
         const repos = [...featuredRepos, ...otherRepos];
 
-        // Hide loading message
+        // Hide the loading spinner now that data is ready
         loading.style.display = 'none';
 
-        // Display repositories
+        // Render cards and (legacy) log page scaffolding
         displayRepositories(repos);
-
-        // Create individual pages for each repository
         createRepositoryPages(repos);
 
     } catch (error) {
+        // Surface the error in the UI instead of silently failing
         loading.textContent = 'Error loading repositories. Please check the username in script.js';
         console.error('Error:', error);
     }
 }
 
-// Display repositories as cards
+/**
+ * Renders an array of GitHub repository objects as cards inside #repos-container.
+ *
+ * Each card includes the repo name, description, star/fork/language metadata,
+ * a link to the local project detail page, and a link to GitHub.
+ * Cards are registered with revealObserver for scroll-triggered fade-in.
+ *
+ * @param {Object[]} repos - Array of repository objects returned by the GitHub API.
+ * @param {string}   repos[].name             - Repository name.
+ * @param {string}   repos[].description      - Repository description (may be null).
+ * @param {number}   repos[].stargazers_count - Number of stars.
+ * @param {number}   repos[].forks_count      - Number of forks.
+ * @param {string}   repos[].language         - Primary language (may be null).
+ * @param {string}   repos[].html_url         - URL to the repo on GitHub.
+ * @returns {void}
+ */
 function displayRepositories(repos) {
+    // Target container where all repo cards will be injected
     const container = document.getElementById('repos-container');
 
     repos.forEach(repo => {
+        // Build the card element and populate it with repo data
         const card = document.createElement('div');
         card.className = 'repo-card reveal';
 
@@ -88,18 +116,37 @@ function displayRepositories(repos) {
             </div>
         `;
 
+        // Append the card and wire it into the scroll-reveal observer
         container.appendChild(card);
         revealObserver.observe(card);
     });
 }
 
-// Create individual HTML pages for each repository
+/**
+ * Logs the scaffolding HTML for each repository's standalone detail page.
+ *
+ * This function does not write files to disk — it prints page templates to the
+ * console as a guide for manually creating pages under project-pages/.
+ *
+ * @param {Object[]} repos - Array of repository objects returned by the GitHub API.
+ * @param {string}   repos[].name             - Repository name (used as the page filename).
+ * @param {string}   repos[].description      - Repository description.
+ * @param {string}   repos[].language         - Primary language.
+ * @param {number}   repos[].stargazers_count - Number of stars.
+ * @param {number}   repos[].forks_count      - Number of forks.
+ * @param {string}   repos[].created_at       - ISO timestamp of repo creation.
+ * @param {string}   repos[].updated_at       - ISO timestamp of last update.
+ * @param {string}   repos[].homepage         - Optional live-demo URL.
+ * @param {string[]} repos[].topics           - Array of topic tags.
+ * @param {string}   repos[].html_url         - URL to the repo on GitHub.
+ * @returns {void}
+ */
 function createRepositoryPages(repos) {
     repos.forEach(repo => {
-        // This function demonstrates the structure
-        // In practice, you'll need to manually create these pages or use a build tool
+        // Log the target filename so it's easy to identify which file to create
         console.log(`Create page: repo-pages/${repo.name}.html with the following content:`);
 
+        // Full HTML scaffold for a project detail page
         const pageContent = `
 <!DOCTYPE html>
 <html lang="en">
@@ -177,17 +224,19 @@ function createRepositoryPages(repos) {
 </html>
         `;
 
-        // Log instructions for manual creation
+        // Print the scaffold so it can be copied into the appropriate file
         console.log(pageContent);
     });
 }
 
-// Run on page load
+// Kick off the repo fetch only on the projects page
 if (document.getElementById('repos-container')) {
     fetchRepositories();
 }
 
 // ─── Scroll Reveal ─────────────────────────────────
+
+// IntersectionObserver that adds .visible once an element enters the viewport
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -197,12 +246,21 @@ const revealObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 
+/**
+ * Registers every .reveal, .reveal-left, and .reveal-right element with
+ * revealObserver so they animate in when they enter the viewport.
+ *
+ * Called once on DOMContentLoaded (or immediately if the DOM is already ready).
+ *
+ * @returns {void}
+ */
 function initScrollReveal() {
     document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
         revealObserver.observe(el);
     });
 }
 
+// Defer until DOM is parsed, or run immediately if already loaded
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initScrollReveal);
 } else {

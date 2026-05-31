@@ -1,10 +1,11 @@
-/* Global Styles */
+/* Global Styles — box-sizing reset applied to every element */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Design token palette used across all components */
 :root {
     --primary-color: #2563eb;
     --secondary-color: #1e40af;
@@ -16,6 +17,7 @@
     --black: #000000;
 }
 
+/* Base body layout — full-height flex column so footer sticks to the bottom */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
@@ -26,7 +28,7 @@ body {
     background-color: var(--white);
 }
 
-/* Navigation */
+/* Navigation — sticky black bar with blue bottom border */
 .navbar {
     background-color: var(--black);
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
@@ -36,6 +38,7 @@ body {
     border-bottom: 4px solid var(--primary-color);
 }
 
+/* Nav inner wrapper — logo on the left, links on the right */
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -45,6 +48,7 @@ body {
     align-items: center;
 }
 
+/* Site logo link in the navbar */
 .nav-logo {
     font-size: 1.5rem;
     font-weight: bold;
@@ -52,12 +56,14 @@ body {
     text-decoration: none;
 }
 
+/* Horizontal nav link list */
 .nav-menu {
     display: flex;
     list-style: none;
     gap: 2rem;
 }
 
+/* Default nav link appearance */
 .nav-menu a {
     color: var(--white);
     text-decoration: none;
@@ -66,16 +72,18 @@ body {
     transition: all 0.3s;
 }
 
+/* Subtle hover highlight on nav links */
 .nav-menu a:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Active page indicator — filled blue pill */
 .nav-menu a.active {
     background-color: var(--primary-color);
     color: var(--white);
 }
 
-/* Main Container */
+/* Main Container — centered, fixed-max-width content wrapper */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -83,6 +91,7 @@ body {
     flex: 1;
 }
 
+/* Resume container override — full-width to maximize PDF viewport */
 .container.resume-container {
     width: 100%;
     max-width: 100%;
@@ -90,24 +99,26 @@ body {
     padding: 1rem;
 }
 
-/* Page Header */
+/* Page Header — centered title block used at the top of most pages */
 .page-header {
     text-align: center;
     margin-bottom: 3rem;
 }
 
+/* Page title color */
 .page-header h1 {
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
-/* Home Page */
+/* Home Page — centered hero section */
 .home-hero {
     text-align: center;
     padding: 3rem 0;
 }
 
+/* Circular profile photo with animated glow */
 .home-photo {
     width: 300px;
     height: 300px;
@@ -118,12 +129,14 @@ body {
     animation: photo-glow 3s ease-in-out infinite;
 }
 
+/* Large name heading on the home page */
 .home-title {
     font-size: 3rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
+/* Constrained intro paragraph below the home title */
 .home-description {
     max-width: 700px;
     margin: 0 auto;
@@ -131,13 +144,14 @@ body {
     color: var(--text-color);
 }
 
-/* Bio Page */
+/* Bio Page — side-by-side photo and text layout */
 .bio-content {
     display: flex;
     gap: 3rem;
     align-items: flex-start;
 }
 
+/* Bio photo — rounded rectangle, fixed size */
 .bio-photo {
     width: 300px;
     height: 300px;
@@ -147,26 +161,30 @@ body {
     flex-shrink: 0;
 }
 
+/* Bio text column — grows to fill remaining space */
 .bio-text {
     flex: 1;
 }
 
+/* Section headings inside the bio text block */
 .bio-text h2 {
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
+/* Body paragraphs in the bio */
 .bio-text p {
     margin-bottom: 1rem;
     font-size: 1.1rem;
 }
 
-/* Content Section */
+/* Content Section — constrained wrapper for interest / project detail copy */
 .content-section {
     max-width: 900px;
     margin: 0 auto;
 }
 
+/* Individual category card inside a content section */
 .interest-category {
     margin-bottom: 2rem;
     padding: 1.5rem;
@@ -174,12 +192,13 @@ body {
     border-radius: 8px;
 }
 
+/* Category card heading */
 .interest-category h2 {
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
-/* Resume Page */
+/* Resume Page — primary CTA / download button */
 .download-btn {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -191,10 +210,12 @@ body {
     transition: background-color 0.3s;
 }
 
+/* Download button hover state */
 .download-btn:hover {
     background-color: var(--secondary-color);
 }
 
+/* Aspect-ratio wrapper that keeps the PDF iframe at the correct proportions */
 .resume-viewer {
     position: relative;
     width: 100%;
@@ -207,6 +228,7 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
+/* Absolutely-positioned iframe that fills its aspect-ratio wrapper */
 .pdf-viewer {
     position: absolute;
     top: 0;
@@ -217,23 +239,26 @@ body {
     display: block;
 }
 
-/* Extras Page */
+/* Extras Page — centered description block above the video grid */
 .extras-description {
     text-align: center;
     margin-bottom: 3rem;
 }
 
+/* Extras description heading */
 .extras-description h2 {
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
+/* Responsive grid for embedded video cards */
 .video-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
+/* Individual video card */
 .video-item {
     background-color: var(--light-bg);
     padding: 1.5rem;
@@ -241,18 +266,20 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Video card heading */
 .video-item h3 {
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
+/* Responsive iframe / video element inside a card */
 .video-player {
     width: 100%;
     border-radius: 6px;
     margin-bottom: 1rem;
 }
 
-/* Contact Page */
+/* Contact Page — two-column grid for info and message sections */
 .contact-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -261,32 +288,37 @@ body {
     margin: 0 auto;
 }
 
+/* Section headings in the contact columns */
 .contact-info h2,
 .contact-message h2 {
     color: var(--primary-color);
     margin-bottom: 1.5rem;
 }
 
+/* Individual contact detail row */
 .contact-item {
     margin-bottom: 1.5rem;
 }
 
+/* Label above a contact detail */
 .contact-item h3 {
     color: var(--text-color);
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
 }
 
+/* Contact link default appearance */
 .contact-item a {
     color: var(--primary-color);
     text-decoration: none;
 }
 
+/* Underline contact links on hover */
 .contact-item a:hover {
     text-decoration: underline;
 }
 
-/* Repositories Page */
+/* Repositories Page — loading indicator */
 .loading {
     text-align: center;
     font-size: 1.2rem;
@@ -294,12 +326,14 @@ body {
     padding: 3rem;
 }
 
+/* Auto-fill grid for repository cards */
 .repos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
 }
 
+/* Individual repository card */
 .repo-card {
     background-color: var(--white);
     border: 1px solid var(--border-color);
@@ -308,21 +342,25 @@ body {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* Lift effect on repo card hover */
 .repo-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* Repo card title */
 .repo-card h3 {
     color: var(--primary-color);
     margin-bottom: 0.5rem;
 }
 
+/* Repo card description */
 .repo-card p {
     color: var(--text-color);
     margin-bottom: 1rem;
 }
 
+/* Stars / forks / language metadata row */
 .repo-meta {
     display: flex;
     gap: 1rem;
@@ -331,11 +369,13 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Action links row at the bottom of a repo card */
 .repo-links {
     display: flex;
     gap: 1rem;
 }
 
+/* Pill-style link button on repo cards */
 .repo-link {
     padding: 0.5rem 1rem;
     background-color: var(--primary-color);
@@ -346,11 +386,12 @@ body {
     transition: background-color 0.3s;
 }
 
+/* Repo link hover — darker blue */
 .repo-link:hover {
     background-color: var(--secondary-color);
 }
 
-/* Footer */
+/* Footer — full-width black bar pinned to the page bottom */
 .footer {
     background-color: var(--black);
     color: var(--white);
@@ -359,6 +400,7 @@ body {
     border-top: 4px solid var(--primary-color);
 }
 
+/* Footer inner wrapper — centered content */
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -366,6 +408,7 @@ body {
     text-align: center;
 }
 
+/* Social icon row in the footer */
 .social-links {
     display: flex;
     justify-content: center;
@@ -373,6 +416,7 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Individual social icon — white-filtered, fixed size */
 .social-icon {
     width: 40px;
     height: 40px;
@@ -381,66 +425,84 @@ body {
     object-fit: contain;
 }
 
+/* Slight scale-up on social icon hover */
 .social-icon:hover {
     transform: scale(1.1);
 }
 
-/* Responsive Design */
+/* Responsive Design — single breakpoint for narrow viewports */
 @media (max-width: 768px) {
+    /* Wrap nav links and reduce font size on small screens */
     .nav-menu {
         flex-wrap: wrap;
         gap: 0.5rem;
         font-size: 0.9rem;
     }
 
+    /* Stack bio photo above text on mobile */
     .bio-content {
         flex-direction: column;
         align-items: center;
     }
 
+    /* Smaller bio photo on mobile */
     .bio-photo {
         width: 250px;
         height: 250px;
     }
 
+    /* Smaller home profile photo on mobile */
     .home-photo {
         width: 250px;
         height: 250px;
     }
 
+    /* Reduce home title font size on mobile */
     .home-title {
         font-size: 2rem;
     }
 
+    /* Single-column video grid on mobile */
     .video-gallery {
         grid-template-columns: 1fr;
     }
 
+    /* Single-column repo grid on mobile */
     .repos-grid {
         grid-template-columns: 1fr;
     }
 }
 
 /* ─── Scroll Reveal ────────────────────────────────── */
+
+/* Hidden starting state — elements slide up when revealed */
 .reveal {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+/* Visible state after IntersectionObserver fires */
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Hidden starting state — elements slide in from the left */
 .reveal-left {
     opacity: 0;
     transform: translateX(-32px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+/* Hidden starting state — elements slide in from the right */
 .reveal-right {
     opacity: 0;
     transform: translateX(32px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+/* Visible state for both directional reveal variants */
 .reveal-left.visible,
 .reveal-right.visible {
     opacity: 1;
@@ -448,21 +510,31 @@ body {
 }
 
 /* ─── Profile Photo Glow ───────────────────────────── */
+
+/* Pulsing navy box-shadow animation on the home profile photo */
 @keyframes photo-glow {
     0%, 100% { box-shadow: 0 0 0 4px #0d2755, 0 0 22px rgba(13, 39, 85, 0.45); }
     50%       { box-shadow: 0 0 0 4px #1e4080, 0 0 46px rgba(30, 64, 128, 0.65); }
 }
 
 /* ─── Project Detail Pages (flat silver) ──────────── */
+
+/* Silver background for project detail pages */
 .page-project {
     background-color: #d8dce2;
 }
+
+/* Navy navbar override for project pages */
 .page-project .navbar {
     background-color: #0d2755;
 }
+
+/* Navy footer override for project pages */
 .page-project .footer {
     background-color: #0d2755;
 }
+
+/* Navy heading color on project pages */
 .page-project main h1,
 .page-project main h2,
 .page-project main h3 {
@@ -470,15 +542,23 @@ body {
 }
 
 /* ─── Inner Pages (all except home) ───────────────── */
+
+/* Silver background for all interior pages */
 .page-inner {
     background-color: #d8dce2;
 }
+
+/* Navy navbar override for inner pages */
 .page-inner .navbar {
     background-color: #0d2755;
 }
+
+/* Navy footer override for inner pages */
 .page-inner .footer {
     background-color: #0d2755;
 }
+
+/* Navy heading color on inner pages */
 .page-inner main h1,
 .page-inner main h2,
 .page-inner main h3 {
@@ -486,6 +566,8 @@ body {
 }
 
 /* ─── Home Page Navy / Silver Hero ────────────────── */
+
+/* Fixed gradient background that transitions navy → silver → navy top-to-bottom */
 .page-home {
     background: linear-gradient(
         180deg,
@@ -501,16 +583,24 @@ body {
     );
     background-attachment: fixed;
 }
+
+/* Navy navbar on the home page */
 .page-home .navbar {
     background-color: #0d2755;
 }
+
+/* Navy footer on the home page */
 .page-home .footer {
     background-color: #0d2755;
 }
+
+/* Navy home title (no text-shadow so it reads cleanly over the gradient) */
 .page-home .home-title {
     color: #0d2755;
     text-shadow: none;
 }
+
+/* Dark navy description text for contrast on the silver mid-section */
 .page-home .home-description {
     color: #1e3a5f;
 }
