@@ -115,7 +115,7 @@ body {
     object-fit: cover;
     object-position: center top;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    animation: photo-glow 3s ease-in-out infinite;
 }
 
 .home-title {
@@ -419,4 +419,98 @@ body {
     .repos-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ─── Scroll Reveal ────────────────────────────────── */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-right {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-left.visible,
+.reveal-right.visible {
+    opacity: 1;
+    transform: translate(0);
+}
+
+/* ─── Profile Photo Glow ───────────────────────────── */
+@keyframes photo-glow {
+    0%, 100% { box-shadow: 0 0 0 4px #0d2755, 0 0 22px rgba(13, 39, 85, 0.45); }
+    50%       { box-shadow: 0 0 0 4px #1e4080, 0 0 46px rgba(30, 64, 128, 0.65); }
+}
+
+/* ─── Project Detail Pages (flat silver) ──────────── */
+.page-project {
+    background-color: #d8dce2;
+}
+.page-project .navbar {
+    background-color: #0d2755;
+}
+.page-project .footer {
+    background-color: #0d2755;
+}
+.page-project main h1,
+.page-project main h2,
+.page-project main h3 {
+    color: #0d2755;
+}
+
+/* ─── Inner Pages (all except home) ───────────────── */
+.page-inner {
+    background-color: #d8dce2;
+}
+.page-inner .navbar {
+    background-color: #0d2755;
+}
+.page-inner .footer {
+    background-color: #0d2755;
+}
+.page-inner main h1,
+.page-inner main h2,
+.page-inner main h3 {
+    color: #0d2755;
+}
+
+/* ─── Home Page Navy / Silver Hero ────────────────── */
+.page-home {
+    background: linear-gradient(
+        180deg,
+        #0d2755 0%,
+        #6b8dba 12%,
+        #b8bfc9 22%,
+        #d0d2d8 38%,
+        #d8dadf 50%,
+        #d0d2d8 62%,
+        #b8bfc9 78%,
+        #6b8dba 88%,
+        #0d2755 100%
+    );
+    background-attachment: fixed;
+}
+.page-home .navbar {
+    background-color: #0d2755;
+}
+.page-home .footer {
+    background-color: #0d2755;
+}
+.page-home .home-title {
+    color: #0d2755;
+    text-shadow: none;
+}
+.page-home .home-description {
+    color: #1e3a5f;
 }

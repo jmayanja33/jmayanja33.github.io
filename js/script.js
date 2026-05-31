@@ -72,7 +72,7 @@ function displayRepositories(repos) {
 
     repos.forEach(repo => {
         const card = document.createElement('div');
-        card.className = 'repo-card';
+        card.className = 'repo-card reveal';
 
         card.innerHTML = `
             <h3>${repo.name}</h3>
@@ -89,6 +89,7 @@ function displayRepositories(repos) {
         `;
 
         container.appendChild(card);
+        revealObserver.observe(card);
     });
 }
 
@@ -184,4 +185,26 @@ function createRepositoryPages(repos) {
 // Run on page load
 if (document.getElementById('repos-container')) {
     fetchRepositories();
+}
+
+// ─── Scroll Reveal ─────────────────────────────────
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+function initScrollReveal() {
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+        revealObserver.observe(el);
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollReveal);
+} else {
+    initScrollReveal();
 }
